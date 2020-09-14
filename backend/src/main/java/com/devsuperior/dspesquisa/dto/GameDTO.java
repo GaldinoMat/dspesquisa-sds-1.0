@@ -20,7 +20,7 @@ public class GameDTO  implements Serializable{
 	public GameDTO(Game entity) {
 		id = entity.getId();
 		title = entity.getTitle();
-		platform = entity.getPlat();
+		platform = entity.getPlatform();
 	}
 
 	public Long getId() {

@@ -61,11 +61,11 @@ public class Game implements Serializable{
 		this.title = title;
 	}
 
-	public Platform getPlat() {
+	public Platform getPlatform() {
 		return platform;
 	}
 
-	public void setPlat(Platform plat) {
+	public void setPlatform(Platform plat) {
 		this.platform = plat;
 	}
 

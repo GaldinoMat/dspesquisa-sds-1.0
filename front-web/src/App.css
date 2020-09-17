@@ -8,7 +8,8 @@
   --color-black: #0b1f34;
 }
 
-body, html {
+body,
+html {
   padding: 0;
   margin: 0;
 }

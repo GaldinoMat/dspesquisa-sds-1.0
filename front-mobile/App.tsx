@@ -9,8 +9,7 @@ import {
 } from "@expo-google-fonts/play";
 
 import Header from "./src/components/Header";
-import Home from "./src/pages/Home";
-import { ScrollView } from "react-native-gesture-handler";
+import Routes from "./src/Routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,18 +21,16 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <ScrollView style={styles.container}>
-        <Header />
-        <Home />
+      <View style={styles.container}>
+        <Routes />
         <StatusBar style="light" />
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#0B1F34",
+    flex: 1
   },
 });

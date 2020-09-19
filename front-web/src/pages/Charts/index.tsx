@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Filters from "../../components/Filters";
-import "./styles.css";
-import { barOptions, pieOptions } from "./chart-options";
 import Chart from "react-apexcharts";
 import axios from "axios";
-import { buildBarSeries, getPlatformChartData } from "./helpers";
+import Filters from "../../components/Filters";
+import { barOptions, pieOptions } from "./chart-options";
+import { buildBarSeries, getPlatformChartData, getGenreChartData } from "./helpers";
+import "./styles.css";
 
 type pieChartData = {
   labels: string[];
@@ -24,27 +24,30 @@ const initialPieData = {
 const BASE_URL = "http://localhost:8080";
 
 const Charts = () => {
-  const [barChartData, setBarCharData] = useState<barChartData[]>([]);
-  const [platformData, setPlatformData] = useState<pieChartData>(initialPieData);
+  const [barChartData, setBarChartData] = useState<barChartData[]>([]);
+  const [platformData, setPlatformData] = useState<pieChartData>(
+    initialPieData
+  );
   const [genreData, setGenreData] = useState<pieChartData>(initialPieData);
 
   useEffect(() => {
     async function getData() {
-      const recordsResponse = await axios.get(`${BASE_URL}/records`);
       const gamesResponse = await axios.get(`${BASE_URL}/games`);
+      const recordsResponse = await axios.get(`${BASE_URL}/records`);
 
       const barData = buildBarSeries(
         gamesResponse.data,
         recordsResponse.data.content
       );
-      console.log(barData)
-      setBarCharData(barData);
+      setBarChartData(barData);
 
       const platformChartData = getPlatformChartData(
         recordsResponse.data.content
       );
-      console.log(setPlatformData.length)
       setPlatformData(platformChartData);
+
+      const genreChartData = getGenreChartData(recordsResponse.data.content);
+      setGenreData(genreChartData);
     }
     getData();
   }, []);
@@ -71,7 +74,7 @@ const Charts = () => {
             <Chart
               options={{ ...pieOptions, labels: platformData?.labels }}
               type="donut"
-              series={[platformData?.series]}
+              series={platformData?.series}
               width="350"
             />
           </div>

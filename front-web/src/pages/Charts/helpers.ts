@@ -8,7 +8,6 @@ export const buildBarSeries = (games: Game[], records: RecordItem[]) => {
         item.gameTitle === game.title && item.gamePlatform === game.platform
       );
     });
-
     return {
       x: `${game.title} | ${game.platform}`,
       y: filteredGames.length,
@@ -38,7 +37,7 @@ export const getPlatformChartData = (records: RecordItem[]) => {
   };
 };
 
-export const getGenderChartData = (records: RecordItem[]) => {
+export const getGenreChartData = (records: RecordItem[]) => {
   const genderByAmount = records.reduce((accumulator, currentValue) => {
     if (accumulator[currentValue.genreName] !== undefined) {
       accumulator[currentValue.genreName] += 1;

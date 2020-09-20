@@ -22,7 +22,7 @@ export const buildBarSeries = (games: Game[], records: RecordItem[]) => {
 };
 
 export const getPlatformChartData = (records: RecordItem[]) => {
-  const platforms = ["PC", "PLAYSTATION", "XBOX"];
+  const platforms = ["PC", "Playstation", "Xbox"];
 
   const series = platforms.map((platform) => {
     const filteredGames = records.filter((item) => {

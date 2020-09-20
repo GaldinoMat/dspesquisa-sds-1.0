@@ -21,7 +21,7 @@ const initialPieData = {
   series: []
 };
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://sds-mateus.herokuapp.com";
 
 const Charts = () => {
   const [barChartData, setBarChartData] = useState<barChartData[]>([]);
@@ -44,6 +44,7 @@ const Charts = () => {
       const platformChartData = getPlatformChartData(
         recordsResponse.data.content
       );
+      console.log(platformChartData)
       setPlatformData(platformChartData);
 
       const genreChartData = getGenreChartData(recordsResponse.data.content);
